@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    </div>
+    <div class="banner">
+        <div class="slider" style="--quantity: 10">
+            <div class="item" style="--position: 1"><img src="pokemon1.jpeg" alt=""></div>
+            <div class="item" style="--position: 2"><img src="pokemon2.jpeg" alt=""></div>
+            <div class="item" style="--position: 3"><img src="pokemon3.jpeg" alt=""></div>
+            <div class="item" style="--position: 4"><img src="pokemon4.jpeg" alt=""></div>
+            <div class="item" style="--position: 5"><img src="pokemon5.jpeg" alt=""></div>
+            <div class="item" style="--position: 6"><img src="pokemon6.jpeg" alt=""></div>
+            <div class="item" style="--position: 7"><img src="pokemon7.jpeg" alt=""></div>
+            <div class="item" style="--position: 8"><img src="pokemon8.jpeg" alt=""></div>
+            <div class="item" style="--position: 9"><img src="pokemon9.jpeg" alt=""></div>
+            <div class="item" style="--position: 10"><img src="pokemon10.jpeg"  alt=""></div>
+        </div>
+        <div class="content">
+            <h1 data-content="Attractive Image Gallery">
+                Ittractive Image Gallery
+            </h1>
+
+            <div class="author">
+                <h2>Mubarak R</h2>
+                <p><b>24900694</b></p>
+                <p>Interactive Image Gallery</p>
+            
+            </div>
+            <div class="model"></div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Modal functionality for image viewing
+        const allPhotos = document.querySelectorAll('.banner .slider .item img'); // Select all images in the slider
+        const modal = document.createElement('div'); // Create modal element dynamically
+        const modalImage = document.createElement('img'); // Create image element for modal
+        const closeModal = document.createElement('span'); // Create close button for modal
+    
+        // Add the modal structure to the body
+        modal.id = 'imageModal';
+        modal.classList.add('modal');
+        modal.appendChild(closeModal);
+        modal.appendChild(modalImage);
+        document.body.appendChild(modal);
+    
+        // Style for modal (you can move this to CSS later if preferred)
+        modal.style.position = 'fixed';
+        modal.style.zIndex = '1';
+        modal.style.left = '0';
+        modal.style.top = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        modal.style.display = 'none';
+        modalImage.style.display = 'block';
+        modalImage.style.margin = 'auto';
+        modalImage.style.maxWidth = '90%';
+        modalImage.style.maxHeight = '90%';
+        closeModal.style.position = 'absolute';
+        closeModal.style.top = '15px';
+        closeModal.style.right = '35px';
+        closeModal.style.color = '#fff';
+        closeModal.style.fontSize = '40px';
+        closeModal.style.fontWeight = 'bold';
+        closeModal.style.cursor = 'pointer';
+    
+        // Add close button text
+        closeModal.textContent = '×';
+    
+        // When an image is clicked, show it in the modal
+        allPhotos.forEach((img) => {
+            img.addEventListener('click', function () {
+                modal.style.display = 'flex';
+                modalImage.src = this.src;  // Set clicked image to modal
+            });
+        });
+    
+        // Close modal when close button is clicked
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    
+        // Handle the rotating slider (optional part of the animation you already have)
+        const sliderElement = document.querySelector('.slider');
+        let angle = 0;
+    
+        function rotateSlider() {
+            angle += 1; // Rotate 1 degree for each iteration
+            sliderElement.style.transform = `perspective(1000px) rotateX(-16deg) rotateY(${angle}deg)`;
+        }
+    
+        setInterval(rotateSlider, 20); // Update the rotation every 20 milliseconds for smooth animation
+    });
+</script>    
+    </body>
+    </html>
